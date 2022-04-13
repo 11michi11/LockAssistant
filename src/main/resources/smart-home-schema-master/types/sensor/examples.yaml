@@ -1,0 +1,38 @@
+name: Simple sensor
+type: action.devices.types.SENSOR
+traits:
+  - action.devices.traits.EnergyStorage
+  - action.devices.traits.SensorState
+attributes:
+  {
+    "sensorStatesSupported": [
+      {
+        "name": "AirQuality",
+        "descriptiveCapabilities": {
+          "availableStates": [
+            "healthy",
+            "moderate",
+            "unhealthy",
+            "very unhealthy"
+          ]
+        }
+      }
+    ],
+    "queryOnlyEnergyStorage": true
+  }
+states:
+  {
+    "currentSensorStateData": [
+      {
+        "name": "AirQuality",
+        "currentSensorState": "healthy"
+      }
+    ],
+    "descriptiveCapacityRemaining": "HIGH",
+    "capacityRemaining": [
+      {
+        "unit": "PERCENTAGE",
+        "rawValue": 90
+      }
+    ]
+  }

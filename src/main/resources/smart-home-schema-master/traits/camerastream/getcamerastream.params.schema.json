@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "examples": [
+    {
+      "$comment": "Show the front door camera.",
+      "StreamToChromecast": false,
+      "SupportedStreamProtocols": [
+        "progressive_mp4",
+        "hls",
+        "dash",
+        "smooth_stream",
+        "webrtc"
+      ]
+    },
+    {
+      "$comment": "Show front door camera on my Chromecast.",
+      "StreamToChromecast": true,
+      "SupportedStreamProtocols": [
+        "hls"
+      ]
+    }
+  ],
+  "description": "Begin streaming the camera (the return URL of the stream) which Google presents on a screen, such as the user's phone, the Assistant surface itself, or through another media or Cast target.",
+  "type": "object",
+  "properties": {
+    "StreamToChromecast": {
+      "description": "Whether the stream will be played on a Chromecast device.",
+      "type": "boolean"
+    },
+    "SupportedStreamProtocols": {
+      "description": "Media types/formats supported by the desired destination.",
+      "type": "array",
+      "items": {
+        "description": "Media type.",
+        "type": "string",
+        "oneOf": [
+          {
+            "enum": [
+              "hls"
+            ],
+            "description": "HTTP Live Streaming"
+          },
+          {
+            "enum": [
+              "dash"
+            ],
+            "description": " Dynamic Adaptive Streaming over HTTP"
+          },
+          {
+            "enum": [
+              "smooth_stream"
+            ],
+            "description": "Smooth Streaming"
+          },
+          {
+            "enum": [
+              "progressive_mp4"
+            ],
+            "description": "Progressive MP4 (mostly used for clips)"
+          },
+          {
+            "enum": [
+              "webrtc"
+            ],
+            "description": "WebRTC"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "StreamToChromecast",
+    "SupportedStreamProtocols"
+  ],
+  "additionalProperties": false
+}

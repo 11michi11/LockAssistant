@@ -19,8 +19,26 @@ class GoogleHomeController {
     @PostMapping("/unlock")
     fun unlock(@RequestBody body: SyncRequest): SyncResponse {
         logger.info(body.toString())
-    }
 
+        val devices = listOf(
+            SyncResponse.Device(
+                id = "0c:06:e7:a:34:25",
+                type = "action.devices.types.DOOR",
+                traits = listOf(
+                    "action.devices.commands.LockUnlock",
+                    "action.devices.commands.OpenClose",
+                    "openPercent",
+                    "isLocked",
+                    "isJammed"
+                ),
+                name = SyncResponse.Name(name = "Domek"),
+                willReportState = false
+            )
+        )
+        // agentUserId should be exchanged by an account number rather than email
+        val payload = SyncResponse.Payload(agentUserId = "11michi11@gmail.com", devices = devices)
+        return SyncResponse(body.requestId, payload)
+    }
 
 
 }
